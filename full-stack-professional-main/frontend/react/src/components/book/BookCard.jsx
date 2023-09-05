@@ -5,11 +5,9 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogOverlay,
-  Avatar,
   Box,
   Button,
   Center,
-  Flex,
   Heading,
   Image,
   Stack,
@@ -20,7 +18,7 @@ import {
 } from '@chakra-ui/react';
 
 import { useRef } from 'react';
-import { bookProfilePictureUrl, deleteBook } from '../../services/book.js';
+import { deleteBook } from '../../services/book.js';
 import {
   errorNotification,
   successNotification,
@@ -36,16 +34,14 @@ export default function CardWithBookImage({
   imageNumber,
   fetchBooks,
 }) {
-  // const randomUserGender = state === "free";
-
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef();
 
   return (
     <Center py={6}>
       <Box
-        maxW={'300px'}
-        minW={'300px'}
+        maxW={'600px'}
+        minW={'400px'}
         w={'full'}
         m={2}
         bg={useColorModeValue('white', 'gray.800')}
@@ -54,14 +50,17 @@ export default function CardWithBookImage({
         overflow={'hidden'}
       >
         <Image
-          h={'120px'}
+          h={'400px'}
           w={'full'}
+          //   src={
+          //     'https://images.unsplash.com/photo-1612865547334-09cb8cb455da?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
+          //   }
           src={
             'https://images.unsplash.com/photo-1612865547334-09cb8cb455da?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
           }
           objectFit={'cover'}
         />
-        <Flex justify={'center'} mt={-12}>
+        {/* <Flex justify={'center'} mt={-12}>
           <Avatar
             size={'xl'}
             src={bookProfilePictureUrl(id)}
@@ -70,7 +69,7 @@ export default function CardWithBookImage({
               border: '2px solid white',
             }}
           />
-        </Flex>
+        </Flex> */}
 
         <Box p={6}>
           <Stack spacing={2} align={'center'} mb={5}>
@@ -78,10 +77,8 @@ export default function CardWithBookImage({
             <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
               {name}
             </Heading>
-            <Text color={'gray.500'}>{name}</Text>
-            <Text color={'gray.500'}>
-              Author: {author} | {genre}
-            </Text>
+            <Text color={'gray.500'}>Author: {author}</Text>
+            <Text color={'gray.500'}>Genre: {genre}</Text>
           </Stack>
         </Box>
         <Stack direction={'row'} justify={'center'} spacing={6} p={4}>

@@ -58,30 +58,25 @@ const CreateBookForm = ({ onSuccess }) => {
       <Formik
         initialValues={{
           name: '',
-          email: '',
-          age: 0,
-          gender: '',
-          password: '',
+          author: '',
+          genre: '',
+          state: '',
         }}
         validationSchema={Yup.object({
           name: Yup.string()
             .max(30, 'Must be 30 characters or less')
             .required('Required'),
           author: Yup.string()
-            .max('Must be 15 characters or less')
+            .max(30, 'Must be 15 characters or less')
             .required('Required'),
           genre: Yup.string()
-            .oneOf(['fiction', 'IN USE'], 'Invalid gender')
+            .oneOf(
+              ['FICTION', 'COMEDY', 'HISTORY', 'DRAMA', 'TRILLER'],
+              'Invalid gender'
+            )
             .required('Required'),
           state: Yup.string()
-            .oneOf(['FREE', 'IN USE'], 'Invalid gender')
-            .required('Required'),
-          state: Yup.string()
-            .min(4, 'Must be 4 characters or more')
-            .max(15, 'Must be 15 characters or less')
-            .required('Required'),
-          gender: Yup.string()
-            .oneOf(['MALE', 'FEMALE'], 'Invalid gender')
+            .oneOf(['FREE', 'IN_USE'], 'Invalid gender')
             .required('Required'),
         })}
         onSubmit={(book, { setSubmitting }) => {
@@ -111,34 +106,29 @@ const CreateBookForm = ({ onSuccess }) => {
                 label="Name"
                 name="name"
                 type="text"
-                placeholder="Jane"
+                placeholder="Jane Eyre: An Autobiography "
               />
 
               <MyTextInput
-                label="Email Address"
-                name="email"
-                type="email"
-                placeholder="jane@formik.com"
+                label="Author"
+                name="author"
+                type="text"
+                placeholder="Charlotte Bronte"
               />
 
-              <MyTextInput
-                label="Age"
-                name="age"
-                type="number"
-                placeholder="20"
-              />
+              <MySelect label="Genre" name="genre">
+                <option value="">Select genre</option>
+                <option value="FICTION">Fiction</option>
+                <option value="COMEDY">Comedy</option>
+                <option value="HISTORY">History</option>
+                <option value="DRAMA">Drama</option>
+                <option value="TRILLER">Triller</option>
+              </MySelect>
 
-              <MyTextInput
-                label="Password"
-                name="password"
-                type="password"
-                placeholder={'pick a secure password'}
-              />
-
-              <MySelect label="Gender" name="gender">
-                <option value="">Select gender</option>
-                <option value="MALE">Male</option>
-                <option value="FEMALE">Female</option>
+              <MySelect label="State" name="state">
+                <option value="">Select state</option>
+                <option value="FREE">Free</option>
+                <option value="IN_USE">In use</option>
               </MySelect>
 
               <Button disabled={!isValid || isSubmitting} type="submit">

@@ -45,7 +45,7 @@ const MyDropzone = ({ bookId, fetchBooks }) => {
     uploadBookProfilePicture(bookId, formData)
       .then(() => {
         successNotification('Success', 'Profile picture uploaded');
-        fetchCustomers();
+        fetchBooks();
       })
       .catch(() => {
         errorNotification('Error', 'Profile picture failed upload');
@@ -83,7 +83,7 @@ const UpdateBookForm = ({ fetchBooks, initialValues, bookId }) => {
           borderRadius={'full'}
           boxSize={'150px'}
           objectFit={'cover'}
-          src={bookProfilePictureUrl(customerId)}
+          src={bookProfilePictureUrl(bookId)}
         />
         <MyDropzone bookId={bookId} fetchBooks={fetchBooks} />
       </VStack>
@@ -128,21 +128,21 @@ const UpdateBookForm = ({ fetchBooks, initialValues, bookId }) => {
                 label="Name"
                 name="name"
                 type="text"
-                placeholder="Jane"
+                placeholder="Jane Eyre: An Autobiography"
               />
 
               <MyTextInput
-                label="Email Address"
-                name="email"
-                type="email"
-                placeholder="jane@formik.com"
+                label="Author"
+                name="author"
+                type="text"
+                placeholder="Charlotte Bronte"
               />
 
               <MyTextInput
-                label="Age"
-                name="age"
-                type="number"
-                placeholder="20"
+                label="Genre"
+                name="genre"
+                type="text"
+                placeholder="Romance"
               />
 
               <Button

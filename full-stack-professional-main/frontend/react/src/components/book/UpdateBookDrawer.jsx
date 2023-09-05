@@ -39,7 +39,7 @@ const UpdateBookDrawer = ({ fetchBooks, initialValues, bookId }) => {
             <UpdateBookForm
               fetchBooks={fetchBooks}
               initialValues={initialValues}
-              customerId={customerId}
+              bookId={bookId}
             />
           </DrawerBody>
 

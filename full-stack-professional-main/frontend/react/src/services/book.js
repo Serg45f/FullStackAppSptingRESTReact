@@ -21,7 +21,8 @@ export const saveBook = async (book) => {
   try {
     return await axios.post(
       `${import.meta.env.VITE_API_BASE_URL}/api/v1/books`,
-      book
+      book,
+      getAuthConfig()
     );
   } catch (e) {
     throw e;
@@ -54,7 +55,7 @@ export const deleteBook = async (id) => {
 export const uploadBookProfilePicture = async (id, formData) => {
   try {
     return axios.post(
-      `${import.meta.env.VITE_API_BASE_URL}/api/v1/books/${id}/profile-image`,
+      `${import.meta.env.VITE_API_BASE_URL}/api/v1/books/${id}/book-image`,
       formData,
       {
         ...getAuthConfig(),
@@ -67,4 +68,4 @@ export const uploadBookProfilePicture = async (id, formData) => {
 };
 
 export const bookProfilePictureUrl = (id) =>
-  `${import.meta.env.VITE_API_BASE_URL}/api/v1/books/${id}/profile-image`;
+  `${import.meta.env.VITE_API_BASE_URL}/api/v1/books/${id}/book-image`;
